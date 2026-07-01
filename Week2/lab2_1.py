@@ -1,0 +1,1 @@
+print("helllo lab2")
