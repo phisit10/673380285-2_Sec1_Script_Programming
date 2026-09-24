@@ -1,1 +1,0 @@
-print("week10 Advanced")
