@@ -1,94 +1,100 @@
-# Week10_LabX-BASIC_-Automating
-Week10_LabX BASIC_ Automating
-This project demonstrates how to programmatically interact with Microsoft Excel `.xlsx` files using Python's `openpyxl` library. It includes functionalities to read data from an existing spreadsheet, perform calculations, and write formatted results to a new Excel file.
+# Lab Basic: การประมวลผลไฟล์ Excel ด้วย Python (`openpyxl`)
 
-## Key Concepts Demonstrated
+## แนวคิดหลักที่ได้เรียนรู้ (Key Concepts Demonstrated)
 
-* **`openpyxl` Library**: Core library for reading, writing, and modifying Excel `.xlsx` files.
-* **Workbook & Worksheet Management**: Loading, creating, and saving Excel workbooks; accessing and creating sheets.
-* **Cell Manipulation**: Reading and writing cell values by coordinates or cell names.
-* **Data Processing**: Iterating through rows, performing calculations (e.g., total sales).
-* **Basic Formatting**: Applying fonts, fills, borders, and number formats to cells.
-* **Column Width Adjustment**: Dynamically adjusting column widths for readability.
+* **ไลบรารี `openpyxl`**: ไลบรารีหลักสำหรับอ่าน เขียน และแก้ไขไฟล์ Excel นามสกุล `.xlsx` ในภาษา Python
+* **การจัดการ Workbook & Worksheet**: การโหลดไฟล์ที่มีอยู่, การสร้าง Workbook ใหม่, การเข้าถึงและการสร้างแผ่นงาน (Sheet)
+* **การจัดการข้อมูลในเซลล์ (Cell Manipulation)**: การอ่านและบันทึกค่าลงในเซลล์โดยอ้างอิงตามพิกัด (Row, Column) หรือชื่อเซลล์ (เช่น `A1`, `B2`)
+* **การประมวลผลข้อมูล (Data Processing)**: การวนลูปอ่านข้อมูลทีละแถว และการคำนวณผลลัพธ์ (เช่น การคำนวณราคารวมของสินค้า)
+* **การจัดรูปแบบพื้นฐาน (Basic Formatting)**: การปรับแต่งแบบอักษร (Font), สีพื้นหลัง (Fill), เส้นขอบ (Border) และรูปแบบตัวเลข (Number Format)
+* **การปรับความกว้างคอลัมน์อัตโนมัติ (Column Width Adjustment)**: การคำนวณและปรับความกว้างของคอลัมน์ให้พอดีกับข้อมูลเพื่อความสวยงามและอ่านง่าย
 
-## Setup & How to Run
+## การติดตั้งและการใช้งาน (Setup & How to Run)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/YOUR_USERNAME/spreadsheet-automator.git](https://github.com/YOUR_USERNAME/spreadsheet-automator.git)
-    cd spreadsheet-automator
-    ```
-2.  **Install Dependencies:**
-    It's highly recommended to use a virtual environment:
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate.bat
-    pip install openpyxl
-    ```
-3.  **Prepare Input Data:**
-    * Create a folder named `data` in the root of your project: `mkdir data`.
-    * Inside the `data` folder, create an Excel file named `input_sales.xlsx`.
-    * Populate `input_sales.xlsx` with sample sales data. The script expects the first sheet to have headers "Product Name", "Quantity", and "Unit Price" in cells A1, B1, C1 respectively, and data starting from row 2.
+1. **Clone Repository:**
+   ```bash
+   git clone https://github.com/phisit10/673380285-2_Sec1_Script_Programming.git
+   cd 673380285-2_Sec1_Script_Programming/week10/week10_LabBasic
+   ```
 
-    **Example `input_sales.xlsx` content:**
+2. **ติดตั้ง Dependencies:**
+   แนะนำให้สร้างและเปิดใช้งาน Virtual Environment ก่อนทำการติดตั้ง:
+   ```bash
+   python -m venv venv
+   
+   # สำหรับ Windows Command Prompt:
+   venv\Scripts\activate.bat
+   # สำหรับ Windows PowerShell:
+   .\venv\Scripts\Activate.ps1
+   # สำหรับ macOS/Linux:
+   source venv/bin/activate
 
-    | Product Name | Quantity | Unit Price |
-    | :----------- | :------- | :--------- |
-    | Laptop       | 2        | 1200.50    |
-    | Mouse        | 5        | 25.00      |
-    | Keyboard     | 3        | 75.99      |
-    | Monitor      | 1        | 300.00     |
-    | Printer      | 1        | 150.00     |
+   # ติดตั้ง openpyxl
+   pip install openpyxl
+   ```
 
-4.  **Run the script:**
-    ```bash
-    python main.py
-    ```
-    The script will:
-    * Load `input_sales.xlsx`.
-    * Calculate total prices per item and a grand total.
-    * Create `output_sales_report.xlsx` in the `data` folder with the processed data and formatting.
+3. **จัดเตรียมข้อมูลนำเข้า (Input Data):**
+   * สร้างโฟลเดอร์ชื่อ `data` ในไดเรกทอรีนี้: `mkdir data`
+   * สร้างไฟล์ Excel ชื่อ `input_sales.xlsx` ไว้ภายในโฟลเดอร์ `data`
+   * ใส่ข้อมูลตัวอย่างการขายลงใน `input_sales.xlsx` โดยกำหนดให้แถวแรก (A1, B1, C1) เป็น Header ชื่อ "Product Name", "Quantity", และ "Unit Price" ตามลำดับ และเริ่มใส่ข้อมูลตั้งแต่แถวที่ 2 เป็นต้นไป
 
-## Project Structure
+   **ตัวอย่างข้อมูลใน `input_sales.xlsx`:**
 
+   | Product Name | Quantity | Unit Price |
+   | :----------- | :------- | :--------- |
+   | Laptop       | 2        | 1200.50    |
+   | Mouse        | 5        | 25.00      |
+   | Keyboard     | 3        | 75.99      |
+   | Monitor      | 1        | 300.00     |
+   | Printer      | 1        | 150.00     |
 
+4. **รันโปรแกรม:**
+   ```bash
+   python main.py
+   ```
+   *สคริปต์จะทำการ:*
+   * อ่านข้อมูลจากไฟล์ `data/input_sales.xlsx`
+   * คำนวณราคารวมของแต่ละรายการสินค้า และราคารวมทั้งหมด (Grand Total)
+   * บันทึกผลลัพธ์พร้อมการจัดรูปแบบลงในไฟล์ `data/output_sales_report.xlsx`
 
-spreadsheet-automator/
-├── src/
-│ ├── init.py # Python package marker
-│ └── excel_processor.py # Core logic for Excel file reading/writing/processing
+## โครงสร้างโปรเจกต์ (Project Structure)
+
+```text
+week10_LabBasic/
 ├── data/
-│ ├── input_sales.xlsx # Sample input Excel file (create this yourself)
-│ └── output_sales_report.xlsx # Generated output Excel file
-├── main.py # Application entry point
-├── .gitignore # Files/folders to ignore in Git
-└── README.md # This project overview
+│   ├── input_sales.xlsx        # ไฟล์ Excel ข้อมูลนำเข้าตัวอย่าง (ต้องสร้างขึ้นเอง)
+│   └── output_sales_report.xlsx # ไฟล์รายงาน Excel ผลลัพธ์ที่โปรแกรมสร้างขึ้น
+├── src/
+│   ├── __init__.py             # บ่งบอกความเป็น Python Package
+│   └── excel_processor.py      # Logic หลักในการอ่าน เขียน และประมวลผล Excel
+├── main.py                     # สคริปต์หลักสำหรับเริ่มทำงานโปรแกรม
+├── .gitignore                  # กำหนดไฟล์/โฟลเดอร์ที่ไม่ต้องการให้ Git ติดตาม
+└── README.md                   # เอกสารอธิบายรายละเอียดและวิธีการใช้งาน
+```
 
+## การแก้ปัญหาเบื้องต้น (Debugging Spreadsheet Automation)
 
+* **`FileNotFoundError`**: ตรวจสอบว่ามีไฟล์ `input_sales.xlsx` อยู่ในโฟลเดอร์ `data` จริงหรือไม่ และชื่อไฟล์ตรงกับที่ระบุในโค้ดหรือไม่
+* **`InvalidFileException` (หรือข้อผิดพลาดเกี่ยวกับ `openpyxl`)**: มักเกิดจากไฟล์ชำรุด หรือไฟล์ไม่ได้เป็น นามสกุล `.xlsx` จริง (เช่น เป็นไฟล์ `.xls` รุ่นเก่า ซึ่ง `openpyxl` ไม่รองรับ) ตรวจสอบให้มั่นใจว่าไฟล์ถูกบันทึกเป็น `.xlsx`
+* **`IndexError` หรือ `TypeError`**: เกิดขึ้นเมื่อโค้ดพยายามนำข้อความมาคำนวณทางคณิตศาสตร์ หรือเข้าถึงแถว/คอลัมน์ที่ไม่มีอยู่จริง ควรเพิ่ม `try-except` หรือเช็กค่า `None` ก่อนการคำนวณ
+* **ลำดับข้อมูลไม่ตรง (Data Mismatches)**: โค้ดจะอ้างอิงลำดับคอลัมน์ตามที่กำหนด (Product Name, Quantity, Unit Price) หากไฟล์นำเข้ามีลำดับคอลัมน์ต่างออกไป ผลการคำนวณจะผิดพลาด ให้แก้ไขโค้ดใน `excel_processor.py` ให้ตรงกับโครงสร้างไฟล์จริง
+* **รูปแบบไม่เปลี่ยน (Formatting Issues)**: หากสไตล์ที่ตั้งค่าไว้ไม่แสดงผล ให้ตรวจสอบการเรียกใช้ module `openpyxl.styles` และตรวจสอบว่าได้ปรับแต่งสไตล์ลงในออบเจกต์เซลล์เรียบร้อยก่อนสั่ง `.save()`
 
-## Debugging Spreadsheet Automation
+## แนวทางการต่อยอดในอนาคต (Extension Ideas)
 
-* **`FileNotFoundError`**: Ensure your `input_sales.xlsx` file is correctly placed in the `data` directory and its name matches exactly.
-* **`InvalidFileException` (or similar `openpyxl` error)**: This often means the Excel file is corrupted, or it's not a valid `.xlsx` file (e.g., it's an old `.xls` format, which `openpyxl` doesn't support). Ensure you are saving as `.xlsx`.
-* **`IndexError` or `TypeError`**: If your script expects a number but gets text (or vice versa), or if it tries to access a row/column that doesn't exist, these errors can occur. Add `try-except` blocks around data type conversions and checks for `None` values.
-* **Data Mismatches**: The script assumes a specific column order (Product Name, Quantity, Unit Price). If your input file has a different order or missing columns, the calculations will be incorrect. Adjust the `excel_processor.py` logic to match your file's structure.
-* **Formatting Issues**: If formatting doesn't appear, double-check the `openpyxl.styles` syntax. Ensure you are applying styles to the correct cell objects *before* saving.
-
-## Extension Ideas (Future Work)
-
-* **Google Sheets Integration**: Explore the Google Sheets API (`gspread` library) to read, write, and update data in cloud-based spreadsheets. This involves setting up API credentials.
-* **Automated Data Validation**: Add logic to check for missing values, out-of-range numbers, or incorrect data types in the input spreadsheet.
-* **Advanced Data Analysis**: Implement more complex calculations (e.g., average sales per product, sales trends, pivot table creation via data manipulation).
-* **Chart Generation**: `openpyxl` supports creating charts directly within the Excel file based on your data.
-* **Conditional Formatting**: Apply rules-based formatting (e.g., highlight low stock, high sales).
-* **GUI for Spreadsheet Tasks**: Create a simple graphical user interface (GUI) using `Tkinter` or `PyQt` to allow users to select input/output files and trigger processing.
-* **Integration with Databases**: Read data from Excel and insert it into a database, or query a database and export results to Excel.
+* **การเชื่อมต่อกับ Google Sheets**: นำไลบรารี `gspread` มาใช้เพื่ออ่านและอัปเดตข้อมูลบน Google Sheets ผ่าน API บนระบบคลาวด์
+* **การตรวจสอบความถูกต้องของข้อมูล (Automated Data Validation)**: เพิ่มระบบตรวจสอบค่าว่าง (Missing Values) หรือประเภทข้อมูลที่ผิดพลาดก่อนนำไปคำนวณ
+* **การวิเคราะห์ข้อมูลขั้นสูง (Advanced Data Analysis)**: เพิ่มการคำนวณยอดขายเฉลี่ยต่อสินค้า หรือการจัดกลุ่มข้อมูลสร้าง Pivot Table
+* **การสร้างกราฟ (Chart Generation)**: ใช้ฟังก์ชันสร้างแผนภูมิของ `openpyxl` เช่น Bar Chart หรือ Line Chart เพื่อแสดงสรุปยอดขายในไฟล์ Excel
+* **การจัดรูปแบบตามเงื่อนไข (Conditional Formatting)**: ใส่สีไฮไลต์เซลล์ตามเงื่อนไข เช่น ไฮไลต์สินค้าที่ยอดขายต่ำกว่าเกณฑ์ หรือสต็อกคงเหลือต่ำ
+* **การพัฒนาส่วนต่อประสานผู้ใช้ (GUI)**: สร้างหน้าต่างโปรแกรมด้วย `Tkinter` หรือ `PyQt` เพื่อให้ผู้ใช้งานเลือกไฟล์และกดประมวลผลได้ง่ายขึ้น
+* **การเชื่อมต่อกับฐานข้อมูล**: อ่านข้อมูลจากไฟล์ Excel แล้วบันทึกลงในฐานข้อมูล (Database) หรือดึงข้อมูลจาก SQL มาส่งออกเป็นรายงาน Excel อัตโนมัติ
 
 ---
 
+## แหล่งที่มา (References)
 
-แหล่งที่มา
-1. https://github.com/GideonJagen/auto-budget
-2. https://github.com/KijaziAbraham/Managing-Subscription-Payment
-3. https://github.com/MikeyBeez/RAGAgent
-4. https://automatetheboringstuff.com/2e/chapter13/
+1. [GideonJagen/auto-budget](https://github.com/GideonJagen/auto-budget)
+2. [KijaziAbraham/Managing-Subscription-Payment](https://github.com/KijaziAbraham/Managing-Subscription-Payment)
+3. [MikeyBeez/RAGAgent](https://github.com/MikeyBeez/RAGAgent)
+4. [Automate the Boring Stuff with Python - Chapter 13 Working with Excel Spreadsheets](https://automatetheboringstuff.com/2e/chapter13/)
