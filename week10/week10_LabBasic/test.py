@@ -1,0 +1,1 @@
+print("week10 basic")
