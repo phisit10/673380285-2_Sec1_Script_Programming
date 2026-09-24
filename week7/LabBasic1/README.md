@@ -15,23 +15,25 @@
 ## วิธีการรัน
 
 1. **Clone repository:**
+
    ```bash
    git clone https://github.com/phisit10/673380285-2_Sec1_Script_Programming.git
    cd 673380285-2_Sec1_Script_Programming/week7/LabBasic1
    ```
-
 2. **ติดตั้ง Dependencies:**
    แนะนำให้สร้าง virtual environment ก่อนติดตั้ง:
+
    ```bash
    python -m venv .venv
    source .venv/bin/activate   # บน Windows: .venv\Scripts\activate
    pip install -r requirement.txt
    ```
-
 3. **รันตัว scraper:**
+
    ```bash
    python main.py
    ```
+
    สคริปต์จะพิมพ์ชื่อหนังสือและรายชื่อบทที่ scrape ได้ออกทาง console
 
 ## โครงสร้างโปรเจกต์
@@ -78,8 +80,8 @@ LabBasic1/
 
 - Automate the Boring Stuff with Python, 3rd Edition: https://automatetheboringstuff.com/3e/
 
-
 ## แหล่งที่มา
+
 1. https://devpress.csdn.net/python/63051124c67703293080ea76.html
 2. https://github.com/BobTheSnob1/dominion_staff_timeline
 3. https://github.com/MikeyBeez/RAGAgent
