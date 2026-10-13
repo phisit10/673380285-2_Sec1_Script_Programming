@@ -27,6 +27,11 @@ class CommunicationAgent:
             self.email_tasks = EmailTasks(smtp_server, smtp_port, imap_server, sender_email, sender_app_password)
             self.sms_tasks = SMSTasks(self.email_tasks)
             self.template_renderer = TemplateRenderer()
+            self._update_context("sender_email", sender_email)
+            self._update_context("recipient_email", os.getenv("TEST_RECIPIENT_EMAIL", sender_email))
+            self._update_context("test_recipient_email", os.getenv("TEST_RECIPIENT_EMAIL", sender_email))
+            self._update_context("phone_number", os.getenv("TEST_SMS_PHONE_NUMBER", ""))
+            self._update_context("sms_carrier", os.getenv("TEST_SMS_CARRIER", "att"))
             logger.info("CommunicationAgent initialized with task handlers.")
         except ValueError as e:
             logger.critical(f"Agent initialization failed: Missing environment variables. {e}")
@@ -81,7 +86,23 @@ class CommunicationAgent:
                 rendered_sender = self._render_template(search_criteria.get("from_sender", "")) if search_criteria.get("from_sender") else None
                 rendered_subject = self._render_template(search_criteria.get("subject_contains", "")) if search_criteria.get("subject_contains") else None
 
+                import time
+                import email.utils
+                logger.info("Waiting 8 seconds for incoming emails to arrive in mailbox...")
+                time.sleep(8)
+
                 uids = self.email_tasks.search_emails(mailbox=mailbox, criteria=search_criteria.get("status", "UNSEEN"), from_sender=rendered_sender, subject_contains=rendered_subject)
+
+                if not uids:
+                    logger.info("No UNSEEN email found immediately, retrying after 5 seconds...")
+                    time.sleep(5)
+                    uids = self.email_tasks.search_emails(mailbox=mailbox, criteria=search_criteria.get("status", "UNSEEN"), from_sender=rendered_sender, subject_contains=rendered_subject)
+
+                if not uids:
+                    logger.info("No UNSEEN emails found, searching with criteria='ALL'...")
+                    all_uids = self.email_tasks.search_emails(mailbox=mailbox, criteria="ALL", from_sender=rendered_sender, subject_contains=rendered_subject)
+                    if all_uids:
+                        uids = [all_uids[-1]]
 
                 if uids:
                     for uid in uids:
@@ -104,7 +125,8 @@ class CommunicationAgent:
                                     if "reply_with_template" in then_act:
                                         reply_body = self.template_renderer.render(then_act["reply_with_template"], {**self.context, **email_info})
                                         reply_subj = self.template_renderer.render(then_act.get("reply_subject_template", "Re: {subject}"), {**self.context, **email_info})
-                                        self.email_tasks.send_email(recipients={'to': [email_info['sender']]}, subject=reply_subj, body=reply_body)
+                                        reply_to = email.utils.parseaddr(email_info['sender'])[1] or email_info['sender']
+                                        self.email_tasks.send_email(recipients={'to': [reply_to]}, subject=reply_subj, body=reply_body)
                     success = True
                 else:
                     success = True
@@ -137,6 +159,9 @@ class CommunicationAgent:
         self._update_context("report_date", datetime.date.today().strftime("%Y-%m-%d"))
         self._update_context("sales_figure", 12345.67)
         self._update_context("total_customers", 500)
+        self._update_context("student_name", "นายพิสิษฐ์ ทรัพย์อุดมโชติ")
+        self._update_context("student_id", "673380285-2")
+        self._update_context("student_msg", "สวัสดีนี่คือการเทสLab12Adv จากนายพิสิษฐ์ ทรัพย์อุดมโชติ 673380285-2 เทส เทส เทสสสส")
 
         for task in self.config.get("tasks", []):
             self._process_task(task)

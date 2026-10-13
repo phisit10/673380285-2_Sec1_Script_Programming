@@ -78,8 +78,11 @@ class EmailTasks:
             self._disconnect_smtp()
             return False
 
+        import email.utils
+        clean_recipients = [email.utils.parseaddr(r)[1] if email.utils.parseaddr(r)[1] else r for r in all_recipients]
+
         try:
-            self._smtp_server.send_message(msg, from_addr=self.sender_email, to_addrs=all_recipients)
+            self._smtp_server.send_message(msg, from_addr=self.sender_email, to_addrs=clean_recipients)
             logger.info(f"Email sent successfully to {', '.join(to_recipients)}. Subject: '{subject}'.")
             return True
         except Exception as e:
@@ -111,8 +114,12 @@ class EmailTasks:
         try:
             self._imap_mail.select(mailbox)
             search_query = [criteria]
-            if from_sender: search_query.extend(['FROM', from_sender])
-            if subject_contains: search_query.extend(['SUBJECT', subject_contains])
+            if from_sender:
+                sender_val = f'"{from_sender}"' if (' ' in from_sender and not from_sender.startswith('"')) else from_sender
+                search_query.extend(['FROM', sender_val])
+            if subject_contains:
+                subj_val = f'"{subject_contains}"' if (' ' in subject_contains and not subject_contains.startswith('"')) else subject_contains
+                search_query.extend(['SUBJECT', subj_val])
 
             status, email_ids = self._imap_mail.search(None, *search_query)
             if status != 'OK': return []

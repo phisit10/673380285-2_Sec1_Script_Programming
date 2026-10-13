@@ -228,3 +228,13 @@ python -m unittest tests/test_automator.py
    - เปลี่ยนจากการส่งผ่าน Email Gateway มาเป็นการเชื่อมต่อกับ REST API ชั้นนำ เช่น [Twilio](https://www.twilio.com/sms) หรือ [Vonage/Nexmo](https://www.vonage.com/) เพื่อให้ส่ง SMS ถึงเบอร์มือถือทั่วโลก (รวมทั้งเบอร์ไทย) ได้อย่างแม่นยำ พร้อมระบบตรวจสอบสถานะการส่ง (Delivery Receipts)
 5. **แจ้งเตือนข้อผิดพลาดทันที (Error Alerting)**:
    - สร้างฟังก์ชันแจ้งเตือนผ่าน Telegram Bot หรือ LINE Notify เมื่อพบ Exception ร้ายแรงในระบบเซิร์ฟเวอร์
+
+---
+
+## แหล่งที่มา (References)
+
+1. [GustavoFulber/Notas-Profesores](https://github.com/GustavoFulber/Notas-Profesores)
+2. [B2B-GJR-Nestle/B2BEmailBlast](https://github.com/B2B-GJR-Nestle/B2BEmailBlast)
+3. [AlexaneTrubert/discord-email-bot](https://github.com/AlexaneTrubert/discord-email-bot)
+4. [AhmedB102/News-GPT-Project](https://github.com/AhmedB102/News-GPT-Project)
+5. [Automate the Boring Stuff with Python - Chapter 18: Sending Email and Text Messages](https://automatetheboringstuff.com/2e/chapter18/)

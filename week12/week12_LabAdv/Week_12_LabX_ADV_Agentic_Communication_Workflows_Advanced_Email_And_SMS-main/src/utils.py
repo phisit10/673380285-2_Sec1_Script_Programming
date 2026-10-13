@@ -1,12 +1,23 @@
 # src/utils.py
 import logging
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import json
 import datetime
 
 # Load environment variables from .env file
-load_dotenv()
+_dotenv_path = find_dotenv(usecwd=True)
+if not _dotenv_path:
+    for candidate in [
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'),
+        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), '.env'),
+        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), '.env')
+    ]:
+        if os.path.exists(candidate):
+            _dotenv_path = candidate
+            break
+
+load_dotenv(dotenv_path=_dotenv_path if _dotenv_path else None)
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

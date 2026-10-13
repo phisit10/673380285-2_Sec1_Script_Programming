@@ -24,7 +24,6 @@
    - [Week 6: ฟังก์ชันและโมดูล (Functions & Modular Programming)](#week-6-functions--modular-programming)
    - [Week 7: การดึงข้อมูลเว็บเบื้องต้นและขั้นสูง (Web Scraping & Selenium)](#week-7-web-scraping--automated-agents)
    - [Week 8: การจัดการข้อมูล CSV และ JSON (Data Processing & Agentic Workflow)](#week-8-data-processing-csv--json)
-   - [Week 9: สัปดาห์สอบกลางภาค (Midterm Examination)](#week-9-midterm-examination)
    - [Week 10: การจัดการกระดาษทำการ Excel อัตโนมัติ (Spreadsheet Automation)](#week-10-spreadsheet-automation-openpyxl)
    - [Week 11: การจัดการเอกสาร PDF และ Word อัตโนมัติ (Document Automation)](#week-11-document-automation-pdf--word)
    - [Week 12: ระบบสื่อสารอัตโนมัติ Email และ SMS (Communication Automation)](#week-12-communication-automation-email--sms)
@@ -150,12 +149,6 @@
   * *Basic:* ใช้โมดูลมาตรฐาน `csv` และ `json` วนลูปประมวลผลข้อมูลและเขียนผลลัพธ์ลงโฟลเดอร์ `data/`
   * *Adv:* ออกแบบระบบโมดูลาร์ (`csv_tasks.py`, `json_tasks.py`, `conversion_tasks.py`, `data_agent.py`) มีหน่วยความจำชั่วคราว (`data_store`) เพื่อส่งผ่านผลลัพธ์ระหว่าง Task ใน Pipeline อัตโนมัติ
 * **ทำแล้วได้เรียนรู้อะไร:** ได้เรียนรู้เทคนิคการประมวลผลข้อมูลอัตโนมัติแบบหลายขั้นตอน (Data Pipeline) การส่งผ่านสถานะข้อมูลระหว่างโมดูล และการออกแบบซอฟต์แวร์ที่ปรับแต่งขั้นตอนได้ผ่าน Configuration โดยไม่ต้องแก้โค้ด
-
----
-
-### [Week 9](week9/): Midterm Examination
-*สถานะ:* สัปดาห์สอบกลางภาค (Midterm Examination Week)
-* **สรุป:** เป็นช่วงเวลาการประเมินผลการเรียนรู้ครึ่งภาคการศึกษา เพื่อทบทวนและวัดผลทักษะการเขียนโปรแกรมสคริปต์ โครงสร้างข้อมูล และการแก้ปัญหาอัลกอริทึมที่ได้เรียนรู้ในสัปดาห์ที่ 1–8
 
 ---
 
