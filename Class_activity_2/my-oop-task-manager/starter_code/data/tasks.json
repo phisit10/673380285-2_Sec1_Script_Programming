@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "description": "seminar_report",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "description": "Labs_ScripProgramming",
+        "completed": true
+    },
+    {
+        "id": 3,
+        "description": "sleep",
+        "completed": false
+    }
+]
