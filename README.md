@@ -27,6 +27,7 @@
    - [Week 10: การจัดการกระดาษทำการ Excel อัตโนมัติ (Spreadsheet Automation)](#week-10-spreadsheet-automation-openpyxl)
    - [Week 11: การจัดการเอกสาร PDF และ Word อัตโนมัติ (Document Automation)](#week-11-document-automation-pdf--word)
    - [Week 12: ระบบสื่อสารอัตโนมัติ Email และ SMS (Communication Automation)](#week-12-communication-automation-email--sms)
+   - [Week 12 (Final Project): Enhanced Task Manager CLI Application](#week-12-final-project-enhanced-task-manager-cli-application)
 2. [สรุปกิจกรรมในชั้นเรียน (Class Activities)](#-สรุปกิจกรรมในชั้นเรียน-class-activities)
    - [Class Activity 1: Building a Simple CLI Application & Defensive Programming](#class-activity-1-building-a-simple-cli-application)
    - [Class Activity 2: OOP Fundamentals & Refactoring CLI Task Manager](#class-activity-2-oop-fundamentals--refactoring)
@@ -191,6 +192,26 @@
   * *Basic:* ใช้ Standard Libraries (`smtplib`, `imaplib`, `email`) ร่วมกับ `python-dotenv` โหลด Gmail App Password จาก `.env`, สร้าง Unit Test Suite ด้วย `unittest.mock`
   * *Adv:* พัฒนาคลาส `CommunicationAgent` วนลูปอ่านเงื่อนไขในคอนฟิก สแกน Inbox ตรวจสอบเงื่อนไขตามข้อความและไฟล์แนบ แล้วกระตุ้นการทำงานของทาสก์ถัดไป (เช่น ส่ง SMS Alert หรือส่งเมลตอบกลับ)
 * **ทำแล้วได้เรียนรู้อะไร:** เข้าใจสถาปัตยกรรมระบบแจ้งเตือนและระบบตอบกลับอัตโนมัติในระดับ Production การป้องกันความลับของระบบด้วยตัวแปรสภาพแวดล้อม และการเขียน Mock Unit Tests เพื่อทดสอบระบบเครือข่ายโดยไม่ต้องเชื่อมต่อจริง
+
+---
+
+### [Week 12 (Final Project)](week12/week12_Lab/): Enhanced Task Manager CLI Application
+*ไฟล์งาน:* `week12/week12_Lab/final_task_manager_project/`, `week12/week12_Lab/`
+
+* **ทำอะไร:** พัฒนาโครงงานปลายภาค **Enhanced Task Manager CLI Application** ฉบับสมบูรณ์ที่ต่อยอดจากแนวคิดใน Class Activity 4 โดยมีโครงสร้างสถาปัตยกรรมแบบ 4 เลเยอร์ (Separation of Concerns: Data Models, Persistence Layer, Business Logic Layer, CLI Presentation Layer) รองรับระบบ Tags, ค้นหาแบบ Case-Insensitive, กรองข้อมูลหลายมิติพร้อมกัน (Multi-criteria Filter), จัดเรียงข้อมูลเชิงพหุสัณฐาน (Polymorphic Sort) พร้อมชุดทดสอบอัตโนมัติ Unit Tests และเอกสารเตรียมการนำเสนอฉบับสมบูรณ์
+  * โฟลเดอร์โปรเจกต์: [`week12/week12_Lab/final_task_manager_project/`](week12/week12_Lab/final_task_manager_project/)
+  * เอกสารสถาปัตยกรรมและการสะท้อนผล: [`week12/week12_Lab/PLAN.md`](week12/week12_Lab/PLAN.md)
+  * รายการตรวจสอบความพร้อมส่งงาน: [`week12/week12_Lab/SUBMISSION_CHECKLIST.md`](week12/week12_Lab/SUBMISSION_CHECKLIST.md)
+  * คู่มือและสคริปต์การนำเสนอ 5-7 นาที: [`week12/week12_Lab/PRESENTATION_GUIDE.md`](week12/week12_Lab/PRESENTATION_GUIDE.md)
+* **เกี่ยวกับเรื่องอะไร:** การพัฒนาโครงงานเชิงวัตถุขั้นสูง (Advanced Object-Oriented Programming: Inheritance, Polymorphism, Encapsulation, Method Overriding), Separation of Concerns (SoC), Data Persistence (JSON Serialization / Deserialization & Backward Compatibility), Defensive Programming & Input Validation, และ Automated Unit Testing
+* **ทำยังไง:**
+  * พัฒนาโมดูล Data Models ใน `src/task.py` ประกอบด้วยคลาสแม่ `Task` และคลาสลูก `DueDateTask` (ตรวจสอบรูปแบบ `YYYY-MM-DD`) กับ `PriorityTask` (ตรวจสอบระดับ `High`, `Medium`, `Low`) พร้อมระบบจัดการ `tags` (Normalization ตัดช่องว่างและแปลงเป็นพิมพ์เล็กเพื่อป้องกันแท็กซ้ำ)
+  * พัฒนา Data Persistence Layer ใน `src/data_persistence.py` รองรับการอ่านและบันทึกไฟล์ `data/tasks.json` พร้อมดักจับข้อผิดพลาด `JSONDecodeError` และใช้ `setdefault('tags', [])` เพื่อรองรับความเข้ากันได้ย้อนหลัง
+  * พัฒนา Business Logic Layer ใน `src/task_manager.py` รองรับการสร้าง ID อัตโนมัติ, การค้นหาแบบ Partial Match ไม่สนตัวพิมพ์เล็ก-ใหญ่, การกรองหลายเงื่อนไขพร้อมกัน (Sequential Pipeline Filtering) และการจัดเรียงเชิงพหุสัณฐาน (Polymorphic Sorting) ด้วยค่าสำรอง `date.max` และ Priority Map
+  * พัฒนา Presentation Layer ใน `src/cli_interface.py` และ `main.py` เมนูตัวเลือก 0–9 พร้อม Input Validation ไม่ให้โปรแกรมแครช
+  * เพิ่มไฟล์สคริปต์รันบน Windows: `run.bat` (รันโปรแกรม) และ `test.bat` (รัน Unit Tests)
+  * เขียนชุดทดสอบอัตโนมัติใน `tests/test_task_manager.py` ครอบคลุมทุกฟังก์ชัน รันผ่าน 8/8 เคส (100% OK)
+* **ทำแล้วได้เรียนรู้อะไร:** ได้ประยุกต์ใช้องค์ความรู้ทั้งหมดตลอดภาคการศึกษาในการพัฒนาโปรแกรมเชิงวัตถุขนาดใหญ่ เข้าใจคุณค่าของการออกแบบสถาปัตยกรรมที่ดีตามหลัก Separation of Concerns การเขียน Unit Tests เพื่อความมั่นใจในการพัฒนา และทักษะการสื่อสารนำเสนอผลงานทางเทคนิคอย่างมืออาชีพ
 
 ---
 
