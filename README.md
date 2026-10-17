@@ -33,7 +33,12 @@
    - [Class Activity 2: OOP Fundamentals & Refactoring CLI Task Manager](#class-activity-2-oop-fundamentals--refactoring)
    - [Class Activity 3: Interacting with Web APIs & JSON Data Processing](#class-activity-3-interacting-with-web-apis)
    - [Class Activity 4: Project Planning & Design: Building an Enhanced Task Manager](#class-activity-4-project-planning--design-enhanced-task-manager)
-3. [ตารางสรุปทักษะและเทคโนโลยีที่ใช้ (Tech Stack Summary)](#-ตารางสรุปทักษะและเทคโนโลยีที่ใช้-tech-stack-summary)
+3. [โครงงานประจำรายวิชา (Projects)](#-โครงงานประจำรายวิชา-projects)
+   - [Mini Project: Wordle CLI — เกมทายคำศัพท์บนเทอร์มินัล (Kanban-Driven)](#mini-project-wordle-cli)
+   - [Final Project: 🟩 Wordle CLI V.2 — ระบบเกมทายคำศัพท์ระดับ Production](#final-project-wordle-cli-v2)
+4. [ใบรับรองและประกาศนียบัตร (Certificates)](#-ใบรับรองและประกาศนียบัตร-certificates)
+   - [Python Essentials 1 & Python Essentials 2 (Cisco Networking Academy)](#-ใบรับรองและประกาศนียบัตร-certificates)
+5. [ตารางสรุปทักษะและเทคโนโลยีที่ใช้ (Tech Stack Summary)](#-ตารางสรุปทักษะและเทคโนโลยีที่ใช้-tech-stack-summary)
 
 ---
 
@@ -272,6 +277,212 @@
   * แยกโครงสร้างระบบ 4 ชั้น: UI (`cli_interface.py`), Logic (`task_manager.py`), Models (`task.py`), Data (`data_persistence.py`)
   * พัฒนาระบบค้นหาแบบไม่สนใจตัวพิมพ์เล็ก-ใหญ่ (`case-insensitive search`), ระบบกรองหลายมิติ (`filter_tasks`), และระบบจัดเรียงข้อมูลชนิดผสมผสาน (`sort_tasks` with Heterogeneous Data Sorting)
 * **ทำแล้วได้เรียนรู้อะไร:** เข้าใจความสำคัญของ "การออกแบบก่อนลงมือเขียนโค้ด" (Design Before Code) เพื่อป้องกันโค้ดยุ่งเหยิง (Spaghetti Code) และสามารถนำหลักการ OOP ขั้นสูงอย่าง Inheritance และ Polymorphism มาใช้แก้ปัญหาที่มีความซับซ้อนได้อย่างเป็นมืออาชีพ
+
+## 🏆 โครงงานประจำรายวิชา (Projects)
+
+---
+
+### Mini Project: Wordle CLI
+> **โปรแกรมเกม Wordle บนเทอร์มินัล สร้างขึ้นเป็นมินิโปรเจกต์พื้นฐาน Python โดยใช้กระบวนการทำงานที่ขับเคลื่อนด้วย Kanban (WIP=1) ร่วมกับ AI**  
+> 🔗 **คลังโค้ด:** [PeerapatTa3/Miniproject_WordleCLI](https://github.com/PeerapatTa3/Miniproject_WordleCLI) | 📊 **สไลด์นำเสนอ:** [Wordle CLI Slide](https://canva.link/8ar6q5q3ydr86pz)
+
+#### 1. ภาพรวม (Overview)
+##### 1.1 แนวคิดและการทำงาน
+โปรแกรมจะสุ่มเลือกคำลับความยาว 5 ตัวอักษรจากคลังคำ และให้ผู้เล่นทายได้ 6 ครั้ง หลังการทายแต่ละครั้ง โปรแกรมจะส่งคืนผลลัพธ์เป็นสัญลักษณ์ตอบกลับ:
+* `✓` — ตัวอักษรถูกต้อง และอยู่ถูกตำแหน่ง
+* `-` — ตัวอักษรถูกต้อง แต่อยู่ผิดตำแหน่ง
+* `x` — ตัวอักษรไม่อยู่ในคำลับ
+
+ทุกอย่างทำงานผ่านเมนูข้อความในเทอร์มินัล (เล่นเกม, ดู/เรียงประวัติ, ลบคำ, ออกจากเกม) ทำให้น้ำหนักเบาและไม่ต้องพึ่งพาไลบรารีภายนอก
+
+##### 1.2 กรณีการใช้งานในโลกจริง (Real-World Use Cases)
+* **โปรเจกต์เพื่อการเรียนรู้** — สอนเรื่องลูป, การจัดการข้อความ (String manipulation), I/O และอัลกอริทึมพื้นฐาน
+* **เครื่องมือ Terminal/DevOps** — เกมคลายเครียดขนาดเล็กที่ไม่ต้องใช้เบราว์เซอร์
+* **การฝึกสคริปต์/ระบบอัตโนมัติ** — แม่แบบสำหรับแอปพลิเคชัน CLI แบบโต้ตอบอื่น ๆ (เกมตอบคำถาม, บอทเกร็ดความรู้)
+* **สาธิต CI/CD และการทดสอบ** — เรียบง่ายพอสำหรับนำเสนอเฟรมเวิร์กการทดสอบ หรือการทำ Packaging Pipeline
+* **การเข้าถึง (Accessibility)** — อินเทอร์เฟซข้อความล้วนเหมาะกับ Screen Reader และเทอร์มินัลทรัพยากรต่ำ
+* **การรวมเข้ากับบอท** — ตรรกะสามารถนำไปใช้ซ้ำในบอทเกมทายคำบน Slack/Discord ได้
+* **การฝึกอัลกอริทึม** — ตัวแก้ไขคำ (Solver) เป็นแบบฝึกหัดคลาสสิกด้านทฤษฎีสารสนเทศและการค้นหา
+
+##### 1.3 ผลการเรียนรู้ (Learning Outcomes - LOs)
+| LO | คำอธิบาย |
+| :---: | :--- |
+| **LO1** | **การเลือกโครงสร้างข้อมูล** — ใช้ Tuples สำหรับคอนฟิกคงที่ และใช้ List of Dictionaries สำหรับสถานะไดนามิกและการเก็บสถิติเชิงลึก |
+| **LO2** | **การจัดการเซตข้อมูล Collection** — ใช้งาน `.append()`, `len()`, `sum()` และ List Comprehension |
+| **LO3** | **การควบคุมทิศทางการทำงานแบบตอบโต้** — สร้างอินเทอร์เฟซเมนูด้วยลูป while และควบคุมรอบเกมย่อย |
+| **LO4** | **การเขียนโปรแกรมเชิงป้องกัน** — ตรวจสอบข้อผิดพลาดของ Data type, ข้อมูลว่าง (Empty list/dict) และ Out-of-bounds input |
+| **LO5** | **การทำเอกสารกระบวนการและบันทึกข้อมูล** — การใช้ Docstrings บรรยายฟังก์ชัน, การบันทึก Log การเล่นลง Dictionary และบันทึกประวัติ Kanban |
+
+#### 2. กระบวนการพัฒนา (Development Workflow)
+การพัฒนาปฏิบัติตาม **กระบวนการ Kanban ที่จำกัด WIP ไว้อย่างเข้มงวดที่ 1** แบ่งเป็น 8 รอบติดต่อกัน โดยในแต่ละรอบ: เลือกการ์ด 1 ใบ → ส่งคำสั่ง AI → เขียนโค้ด → อัปเดต `CHANGELOG.md` → อัปเดต `LEARNINGLOG.md` → ย้ายการ์ดไป Done → เลือกการ์ดใบถัดไป  
+`[ Backlog ] → [ Ready (WIP: 2) ] → [ In Progress (WIP: 1) ] → [ AI Code Review ] → [ Done ]`
+
+##### รายการงาน Kanban (Kanban Backlog) — ครบทุกรอบ
+| รอบที่ | การ์ด | หมวดหมู่ | LO | สถานะ |
+| :---: | :--- | :--- | :---: | :---: |
+| 1 | 1.1 ตั้งค่าโปรเจกต์และกระบวนการบันทึกข้อมูล | โครงสร้างพื้นฐานและกระบวนการ | LO5 | ✅ สำเร็จ |
+| 2 | 1.2 กำหนดโครงสร้างคอนฟิกแบบแก้ไขไม่ได้ | สถาปัตยกรรมข้อมูล | LO1 | ✅ สำเร็จ |
+| 3 | 2.1 สร้างโครงสร้างลูปและเมนูตอบโต้ | การควบคุมทิศทาง | LO3 | ✅ สำเร็จ |
+| 4 | 3.1 ตรรกะประเมิน Wordle และการบันทึกคำทาย | การจัดการ Collection | LO1, LO2 | ✅ สำเร็จ |
+| 5 | 3.2 ป้องกันข้อมูลป้อนเข้าไม่ถูกต้องขณะทายคำ | การเขียนโปรแกรมเชิงป้องกัน | LO4 | ✅ สำเร็จ |
+| 6 | 4.1 ดูและเรียงลำดับประวัติการทาย | การจัดการ Collection | LO2, LO4 | ✅ สำเร็จ |
+| 7 | 4.2 ลบคำออกจากคลังคำอย่างปลอดภัย | การเขียนโปรแกรมเชิงป้องกัน | LO2, LO4 | ✅ สำเร็จ |
+| 8 | 5.1 รีแฟกเตอร์ขั้นสุดท้าย บันทึกการเปลี่ยนแปลง และสรุปผล | ความเป็นเจ้าของกระบวนการ | LO5 | ✅ สำเร็จ |
+| 9 | 6.1 Refactor ฟังก์ชัน & ระบบสถิติด้วย Dictionary | โครงสร้างข้อมูลขั้นสูง | LO1, LO5 | ✅ สำเร็จ |
+
+> **สถานะกระดานสุดท้าย:** Backlog ว่าง · Ready ว่าง · In Progress ว่าง · AI Review ว่าง · **Done = 8/8 การ์ด**
+
+#### 3. ชิ้นงานของโปรเจกต์ (Project Artifacts)
+| ชิ้นงาน | ไฟล์ | วัตถุประสงค์ |
+| :--- | :--- | :--- |
+| **โค้ดโปรแกรม** | `main.py` | ตัวเกมที่รันได้ (ลูปเมนู, การประเมินผล, การตรวจสอบป้องกัน) |
+| **บันทึกการเรียนรู้** | `LEARNINGLOG.md` (หรือ `.ipynb`) | ประวัติคำสั่ง AI + โน้ตแก้บั๊ก/การสะท้อนคิดในแต่ละรอบ |
+| **บันทึกการเปลี่ยนแปลง** | `CHANGELOG.md` | ประวัติเวอร์ชัน v0.1.0 → v1.0.0 |
+| **โน้ตการทดสอบ** | `TEST.md` | บันทึกการทดสอบกรณีขอบเขตด้วยตนเอง |
+| **สไลด์นำเสนอ** | [Wordle CLI Slide](https://canva.link/8ar6q5q3ydr86pz) | สรุปแบบสั้น/ยาว + โครงร่างการนำเสนอ 15 นาที |
+| **เอกสารโปรเจกต์** | `README.md` | ภาพรวม, การรัน Kanban, LOs และการทำงาน |
+
+#### 4. แหล่งอ้างอิงที่ใช้ระหว่างการพัฒนา
+* การอภิปรายเรื่องจริยธรรม AI / AI ที่อธิบายได้ / AI ที่มีความรับผิดชอบ — ใช้เพื่อกรอบแนวทางการเขียนโค้ดที่โปร่งใส ปลอดภัย และมีจริยธรรม
+* โจทย์มินิโปรเจกต์ (ผลการเรียนรู้, การประเมินคุณลักษณะ, ตารางเกณฑ์การประเมิน) — ใช้เพื่อกำหนดขอบเขตของการ์ด Kanban และเกณฑ์การยอมรับงาน
+
+---
+
+### Final Project: Wordle CLI V.2
+> **โปรแกรมเกมทายคำศัพท์ (Wordle) แบบ Command Line Interface พัฒนาด้วย Python ระดับ Production**  
+> **เวอร์ชัน:** `v1.0.0` (สถานะปัจจุบัน: จบ Sprint 4 / Sprint Final เสร็จสมบูรณ์ทุก Sprint)  
+> 🔗 **คลังโค้ด:** [PeerapatTa3/WordleCLI_V2](https://github.com/PeerapatTa3/WordleCLI_V2)  
+> 📊 **สไลด์นำเสนอ:** [Sprint 1-2](https://canva.link/hnnokmn8fgtewi9) | [Sprint 3](https://canva.link/7xanqzsz6flopto) | [Sprint Final](https://canva.link/frq4wtjzq16phtw)
+
+#### 📋 คุณสมบัติ (Features)
+* 🎮 **เล่นเกม Wordle**: ทายคำศัพท์ 5 ตัวอักษร ภายใน 6 ครั้ง
+* 📴 **Offline-first**: สุ่มคำเฉลยและตรวจคำทายจากไฟล์ในแพ็กเกจ (`src/data/answers.txt` 1,984 คำ, `src/data/valid_words.txt` 8,636 คำ) ตรวจคำทันทีด้วย set lookup ไม่มีการเรียก network ตอนเล่น
+* 🌐 **Global CLI & Subcommands**: ติดตั้งคำสั่ง `wordle` ใช้งานจากไดเรกทอรีใดก็ได้ผ่าน `pip install .`
+  * `wordle`: เปิดเมนูหลัก
+  * `wordle start`: เริ่มเกมทันทีโดยข้ามเมนู
+  * `wordle today`: เริ่มเกมด้วยคำเฉลยประจำวันจาก NYT API (พร้อม fallback ออฟไลน์)
+  * `wordle history`: ดูประวัติการเล่นทันที
+  * `wordle stats`: ดูสถิติการเล่นทันที
+  * `wordle howto`: ดูวิธีเล่นทันที
+* 🖼️ **Rich UI (`rich`)**: เมนู, กระดานทาย, ประวัติ, สถิติ และวิธีเล่นแสดงเป็น Panel/Table มีกรอบและสีสัน
+* ♻️ **In-place redraw**: กระดานวาดทับตำแหน่งเดิม คำที่พิมพ์ไม่ค้างบนจอ และข้อความ Invalid guess ถูกแทนที่เมื่อทายใหม่
+* 📊 **ประวัติและสถิติครบถ้วน**: แสดงผลรายเกม (WON/LOST, คำเฉลย, ตารางสี), สถิติ Games Played, Win Rate, Current Streak และ Guess Distribution
+* 🔍 **ค้นหา/กรองประวัติ**: `search_history`, `filter_history` ใน `src/history_manager.py`
+* 💾 **Per-User Persistence**: ประวัติเก็บที่ `~/.wordle/history.json` (Windows: `%USERPROFILE%\.wordle\history.json`) พร้อม `WORDLE_HISTORY_PATH` override สำหรับเทสต์
+* 🛡️ **Defensive & Hardened**: ทนทานต่อไฟล์หาย/เสีย/invalid JSON; ตกไปใช้ `DEFAULT_WORD_POOL` ได้อย่างปลอดภัย
+* 💡 **ตัวช่วยในการเล่น**: คำสั่ง `hint` (เปิดตัวอักษรทีละตำแหน่งไม่เสียรอบ) และ `answer` (ยอมแพ้โดยตัดเกมไม่จบออกจากสถิติ)
+* 🧪 **DevOps & CI/CD**: GitHub Actions workflow ทดสอบแบบ Matrix (Python 3.12/3.13 บน Ubuntu/Windows) พร้อม Flake8 linting และ Coverage gate 80% (ทำได้จริง 93.46%)
+
+#### 🧱 สถาปัตยกรรม (Architecture)
+โปรเจกต์แบ่งออกเป็น 3 เลเยอร์ตามหลัก **Separation of Concerns**:
+
+| เลเยอร์ | หน้าที่ | ไฟล์ |
+| :--- | :--- | :--- |
+| **Presentation Layer** | เมนู, รับอินพุต, วาดหน้าจอเกม, CLI entry point | `src/cli.py`, `src/board_renderer.py` |
+| **Business Logic Layer** | กติกาเกม, คำนวณ feedback, สถิติ, search/filter | `src/game_logic.py`, `src/history_manager.py` |
+| **Data Access Layer** | อ่าน/เขียน history (JSON), โหลดคลังคำ (txt), Daily API | `src/data_manager.py`, `src/word_bank.py`, `src/word_api.py` |
+
+```text
+WordleCLI_V2/
+├── .github/workflows/ci.yml    # GitHub Actions CI matrix (Ubuntu/Windows, Py 3.12/3.13)
+├── .flake8                     # Flake8 configuration (max-line-length=120)
+├── pyproject.toml              # Packaging metadata & console scripts (wordle, run-app)
+├── game.py                     # Entry point สำหรับรันด้วย python game.py
+├── cli.py                      # Compatibility wrapper (from src.cli import *)
+├── src/
+│   ├── cli.py                  # Presentation & CLI dispatcher (start, today, history, etc.)
+│   ├── board_renderer.py       # BoardRenderer: tile/table สำหรับกระดาน ประวัติ และ legend
+│   ├── game_logic.py           # WordleGame, calculate_feedback (pure business logic)
+│   ├── history_manager.py      # group_history_by_game, calculate_stats, search/filter
+│   ├── data_manager.py         # save_data / load_data (ประวัติใน ~/.wordle/history.json)
+│   ├── word_bank.py            # load_word_bank() โหลด answers/valid_words ในเครื่อง
+│   ├── data/
+│   │   ├── answers.txt         # คำเฉลยในแพ็กเกจ (1,984 คำ)
+│   │   └── valid_words.txt     # คำที่ทายได้ในแพ็กเกจ (8,636 คำ)
+│   └── word_api.py             # today_word() ดึงคำเฉลย NYT ประจำวัน
+├── scripts/                    # เครื่องมือ build-time (build_wordlists.py, word_api.py)
+├── tests/                      # pytest (8 ไฟล์ รวม 93 เคส, coverage 93.46%)
+├── Sprints/                    # สรุปผลแต่ละ Sprint (Sprint 1 - Sprint 4)
+├── handbook/                   # Developer & Player handbooks
+└── README.md
+```
+
+#### ⚙️ ความต้องการของระบบและการติดตั้ง (Installation & Usage)
+* **Python**: 3.8 ขึ้นไป (ทดสอบบน Python 3.12 และ 3.13 ทั้ง Windows และ Linux)
+* **Dependencies**: `rich` (CLI UI), `requests` (NYT Daily API), Dev: `pytest`, `pytest-cov`, `flake8`
+
+```bash
+# 1. ติดตั้งโปรแกรมและ dependencies
+pip install git+https://github.com/PeerapatTa3/WordleCLI_V2.git
+
+# 2. รันโปรแกรมจากโฟลเดอร์ใดก็ได้
+wordle
+
+# หรือเริ่มเล่นเกมทันที
+wordle start
+
+# โหมดคำศัพท์ประจำวัน
+wordle today
+```
+
+#### 🕹️ วิธีเล่น (How to Play)
+1. เลือกเมนู `1. Play Wordle`
+2. พิมพ์คำทาย 5 ตัวอักษร แล้วกด Enter (ต้องเป็นคำที่อยู่ใน `valid_words.txt`)
+3. ระบบจะแสดง feedback เป็นช่องสี:
+   * `✓` (เขียว) = ตัวอักษรถูกและอยู่ตำแหน่งที่ถูกต้อง
+   * `-` (เหลือง) = ตัวอักษรมีในคำตอบ แต่ผิดตำแหน่ง
+   * `x` (เทา) = ตัวอักษรไม่มีในคำตอบ
+4. ทายให้ถูกภายใน 6 ครั้ง (คำสั่งช่วย: `hint` เปิดตัวอักษรทีละตำแหน่ง, `answer` ขอยอมแพ้)
+5. เมนูอื่น: `2. View History`, `3. View Statistics`, `4. How to Play`, `5. Exit`
+
+#### 🧪 การทดสอบ (Testing)
+```bash
+python -m pytest --cov=src --cov-report=term-missing --cov-fail-under=80
+```
+> **ผลการทดสอบ:** ผ่านครบ **93 เคส (100% Zero failures)** | **Code Coverage:** **93.46%**
+
+| ไฟล์ทดสอบ | จำนวนเคส | รายละเอียดการทดสอบ |
+| :--- | :---: | :--- |
+| `tests/test_cli.py` | 43 | validation, เมนู 1-5, สถิติ, ประวัติ, hint/answer, in-place redraw, fallbacks |
+| `tests/test_word_bank.py` | 15 | โหลด word bank ในเครื่อง, fallback pool, กรอง/normalize, ไม่เรียก network |
+| `tests/test_logic.py` | 11 | feedback algorithm (ตัวอักษรซ้ำ), WordleGame state, search/filter |
+| `tests/test_entrypoint.py` | 9 | global CLI subcommands (start, history, stats, howto, today), help |
+| `tests/test_today_word.py` | 5 | today_word() ดึงคำเฉลย NYT ประจำวัน, exception handling, timeout |
+| `tests/test_word_api.py` | 5 | helper build-time ของ Datamuse ใน scripts/ |
+| `tests/test_history_manager.py` | 3 | empty history, legacy records, streak reset เมื่อแพ้, win distribution |
+| `tests/test_boardrenderer.py` | 2 | สี tile, การ pad แถวว่างของกระดาน |
+| **รวม** | **93** | **ผ่านครบทั้งหมด 100%** |
+
+#### 🗺️ แผนการพัฒนา (Development Roadmap)
+| Sprint | โฟกัสหลัก | สถานะ |
+| :---: | :--- | :---: |
+| **Sprint 1** | Front-End App Dev (CLI, Input Validation) | ✅ เสร็จสมบูรณ์ |
+| **Sprint 2** | Back-End App Dev (Logic, File I/O, Search/Filter) | ✅ เสร็จสมบูรณ์ |
+| **Sprint 3** | Full-Stack Integration (Offline-first, In-place Redraw) | ✅ เสร็จสมบูรณ์ |
+| **Sprint Final** | DevOps, CI/CD, Packaging, Global CLI & Daily Word Mode | ✅ เสร็จสมบูรณ์ |
+
+#### 👥 ทีมพัฒนา (Team & Roles)
+* **สมาชิกในทีม:**
+  * **เทน:** นายพิสิษฐ์ ทรัพย์อุดมโชติ (รหัสนักศึกษา: 673380285-2)
+  * **พี:** นายพีรพัฒน์ แท่นประยุทร (รหัสนักศึกษา: 673380288-6)
+  * **ซอก:** นายพีรพล แก้วเจริญสันติสุข (รหัสนักศึกษา: 673380287-8)
+
+* **การหมุนเวียนบทบาทในแต่ละ Sprint:**
+  * **Sprint 1:** เทน (Planner/PM) | ซอก (Coder) | พี (Debugger/QA)
+  * **Sprint 2:** ซอก (Planner/PM) | พี (Coder) | เทน (Debugger/QA)
+  * **Sprint 3:** พี (Planner/PM) | เทน (Coder) | ซอก (Debugger/QA)
+  * **Sprint Final:** เทน (DevOps & Packaging) | ซอก (Core Logic & Automation) | พี (QA, Testing & Code Quality)
+
+---
+
+## 📜 ใบรับรองและประกาศนียบัตร (Certificates)
+
+รายวิชานี้ได้กำหนดให้นักศึกษาผ่านการเรียนรู้และทดสอบตามมาตรฐานสากลของ **Cisco Networking Academy** ร่วมกับ **OpenEDG Python Institute** โดยได้รับเกียรติบัตรรับรองความรู้ความสามารถทางด้านการเขียนโปรแกรมภาษา Python จำนวน 2 หลักสูตร:
+
+| ลำดับ | รายการประกาศนียบัตร | สถาบันผู้ออกเอกสาร | ขอบเขตเนื้อหาและทักษะที่ได้รับการรับรอง | ไฟล์เอกสาร |
+| :---: | :--- | :--- | :--- | :---: |
+| **1** | **Python Essentials 1** | Cisco Networking Academy & OpenEDG Python Institute | พื้นฐานไวยากรณ์ภาษา Python, ชนิดข้อมูลพื้นฐาน (Integers, Floats, Strings, Booleans), ตัวดำเนินการทางคณิตศาสตร์และตรรกศาสตร์, การควบคุมทิศทางการทำงานของโปรแกรม (Conditional Statements: `if-elif-else`), ลูปและการวนซ้ำ (`while`, `for`), การจัดการโครงสร้างข้อมูลแบบ List และ Tuple | [📄 ดูไฟล์เกียรติบัตร (PDF)](Certificate_Python_Essentials/673380285-2%20certificate%20Script%20Programming%201-26%20%5BPython%20Essentials%201%5D.pdf) |
+| **2** | **Python Essentials 2** | Cisco Networking Academy & OpenEDG Python Institute | โครงสร้างข้อมูลขั้นสูง (Dictionaries, Sets), การสร้างและเรียกใช้ฟังก์ชัน (Functions & Scope), การจัดการโมดูลและแพ็กเกจ (Modules & Packages), การเขียนโปรแกรมเชิงวัตถุ (Object-Oriented Programming: Classes, Objects, Inheritance, Encapsulation), การดักจับข้อผิดพลาด (Exception Handling), และการประมวลผลไฟล์ I/O | [📄 ดูไฟล์เกียรติบัตร (PDF)](Certificate_Python_Essentials/673380285-2%20certificate%20Script%20Programming%202-26%20%5BPython%20Essentials%202%5D.pdf) |
 
 ---
 
